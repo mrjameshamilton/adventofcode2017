@@ -9,7 +9,7 @@ object App {
     * @return number of valid passphrases
     */
   def part2(passphrases: List[String]): Int =
-    part1(passphrases.map(p => p.split(" ").toList.map(p => p.sorted).mkString(" ")))
+    part1(passphrases.map(_.split(" ").toList.map(_.sorted).mkString(" ")))
 
   /**
     * How many passphrases are valid? A valid passphrase must contain no duplicate words.
@@ -22,7 +22,7 @@ object App {
       val words = passphrase.split(" ")
       words.toSet.size == words.length
     }
-    passphrases.count(passphrase => isValid(passphrase))
+    passphrases.count(isValid)
   }
 
   def main(args: Array[String]): Unit = {
