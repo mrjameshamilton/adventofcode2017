@@ -11,8 +11,8 @@ public class App {
     /**
      * On each move increment the current instruction by 1.
      *
-     * @param instructions
-     * @return
+     * @param instructions the instructions.
+     * @return the number of steps.
      */
     public int part1(final List<Integer> instructions) {
         return solution(instructions, current -> current + 1);
@@ -22,8 +22,8 @@ public class App {
      * On each move if the current instruction is >= 3 decrement by 1
      * else increment by 1.
      *
-     * @param instructions
-     * @return
+     * @param instructions the instructions.
+     * @return the number of steps.
      */
     public int part2(final List<Integer> instructions) {
         return solution(instructions, current -> current >= 3 ? current - 1 : current + 1 );
@@ -42,17 +42,14 @@ public class App {
      */
     private int solution(final List<Integer> instructions, final Function<Integer, Integer> update) {
         final List<Integer> copy = new ArrayList<>(instructions);
+        final int numberOfInstructions = copy.size();
         int steps = 0;
         int current = 0;
-        while (true) {
-            try {
-                int next = current + copy.get(current);
-                copy.set(current, update.apply(copy.get(current)));
-                current = next;
-                steps++;
-            } catch (IndexOutOfBoundsException e) {
-                break;
-            }
+        while (current >= 0 && current < numberOfInstructions) {
+            final int next = current + copy.get(current);
+            copy.set(current, update.apply(copy.get(current)));
+            current = next;
+            steps++;
         }
         return steps;
     }
