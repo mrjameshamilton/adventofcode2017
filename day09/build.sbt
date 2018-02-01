@@ -1,4 +1,4 @@
-name := "day9"
+name := "day09"
 
 version := "0.1"
 
