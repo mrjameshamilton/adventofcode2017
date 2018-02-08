@@ -22,11 +22,7 @@ object DanceParser extends RegexParsers {
 }
 
 class Environment(n:Int = 16) {
-
-  if(n > 16)
-    throw new IllegalArgumentException("Maximum number of programs is 16")
-  if (n <= 0)
-    throw new IllegalArgumentException("There must be at least one program")
+  require(n > 0 && n <=16, "The number of programs must be between 0 and 16")
 
   private var programs = mutable.ArraySeq.range('a', ('a' + n).toChar)
 
